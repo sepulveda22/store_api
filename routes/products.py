@@ -7,12 +7,10 @@ from database import get_db
 from schemas.product import Product, ProductCreate
 
 router = APIRouter(prefix="/products", tags=["products"])
-
 @router.post("/", response_model=Product)
 async def create_product(product: ProductCreate,
                          db: Session = Depends(get_db),
-                         current_user: User = Depends(get_current_user)):
-    
+                         current_user: User = Depends(get_current_user)): 
     if current_user.role != 'admin':
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -25,7 +23,6 @@ async def create_product(product: ProductCreate,
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Product with this name already exists."
         )
-    
     db_product = ProductModel(**product.model_dump())
     db.add(db_product)
     db.commit()
@@ -36,7 +33,7 @@ async def create_product(product: ProductCreate,
 async def read_product(product_id: int,
                        db: Session = Depends(get_db),
                        current_user: User = Depends(get_current_user)):
-    
+
     db_product = db.query(ProductModel).filter(ProductModel.id == product_id).first()
     if db_product is None:
         raise HTTPException(
