@@ -48,8 +48,6 @@ Accede a la documentación interactiva en:
 - `utils/`: Utilidades y seguridad
 - `database.py`: Configuración de la base de datos
 
-## Pruebas
-(Agrega aquí instrucciones si implementas tests)
 
 ---
 
