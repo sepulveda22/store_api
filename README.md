@@ -48,7 +48,3 @@ Accede a la documentación interactiva en:
 - `utils/`: Utilidades y seguridad
 - `database.py`: Configuración de la base de datos
 
-
----
-
-Recuerda no subir archivos sensibles como `config.json` al repositorio público.
